@@ -13,7 +13,7 @@ int empi_ni = 0;
 int b_to = 0;
 int termi_jo = 0;
 int total_num = 0;
-int empi_num = 0; // Contador para las palabras que empiezan con "N\xFAm"
+int empi_num = 0; 
 %}
 
 %%
@@ -22,11 +22,11 @@ int empi_num = 0; // Contador para las palabras que empiezan con "N\xFAm"
 [0-9]+      { cont_digit += yyleng; total_num++;cont_caract+= yyleng; }
 ni[a-zA-Z\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA\xF1\xD1]* { empi_ni++;cont_caract+= yyleng; }
 b[a-zA-Z\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA\xF1\xD1]*to { b_to++; cont_caract+= yyleng;}
-n[\xFA]m[a-zA-Z]* { empi_num++; cont_caract += yyleng;} // Contamos palabras que empiezan con "Núm"
+n[\xFA]m[a-zA-Z]* { empi_num++; cont_caract += yyleng;} // Contamos palabras que empiezan con "NÃºm"
 [a-zA-Z\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA\xF1\xD1]+jo { termi_jo++;cont_caract+= yyleng; }
 [a-zA-Z\xE1\xE9\xED\xF3\xFA\xC1\xC9\xCD\xD3\xDA\xF1\xD1]+   { cont_palabras++; cont_caract+= yyleng;}
-.          { cont_caract++;  }  // Contamos todos los caracteres (incluyendo letras y símbolos)
-[ ][ \t\r]    { cont_caract += yyleng; }  // Contamos espacios, tabuladores y retornos de carro
+.          { cont_caract++;  }  
+[ ][ \t\r]    { cont_caract += yyleng; }  
 
 
 %%
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     }
 
     yyin = file;
-    yylex();  // Procesa el archivo
+    yylex();  
 
     printf("Total de lineas: %d\n", cont_lineas );
     printf("Total de palabras: %d\n", (cont_palabras+total_num+empi_ni+ b_to+termi_jo));
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     printf("Palabras que empiezan con 'b' y terminan con 'to': %d\n", b_to);
     printf("Palabras que terminan con 'jo': %d\n", termi_jo);
     printf("Total de digitos: %d\n", cont_digit);
-     printf("Palabras que empiezan con 'N\xFAm': %d\n", empi_num); // Imprimimos el contador de palabras que empiezan con "Núm"
+     printf("Palabras que empiezan con 'N\xFAm': %d\n", empi_num); 
 
     fclose(file);
     return 0;
