@@ -1,0 +1,15 @@
+Las entradas deben ser una por ejecución.
+Entradas aceptadas:
+Todas las operaciones básicas, ejemplo:
+4
+555+25
+1795-5
+5*896
+3500/70
+
+Entradas no válidas, letras, números negativos, divisiones entre cero:
+-8
+-5
+ASD
+HELLO WORLD
+789/0
