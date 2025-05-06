@@ -16,7 +16,7 @@ symbtbl *add_symbol(char *, char *, int);
 }
 
 %token SELECT FROM WHERE AND OR DELETE UPDATE SET INSERT INTO VALUES
-%token <str> IDENTIFIER NUMBER STRING
+%token <str> ID NUM STRING
 %token '*' ',' '=' '<' '>' ';' '(' ')'
 
 %type <str> column_list table_list condition expr value_list select_columns
@@ -27,7 +27,7 @@ input: /* empty */
      | input line
      ;
 
-line: stmt ';' { printf("Consulta v·lida en lÌnea %d\n", current_line); }
+line: stmt ';' { printf("Consulta v√°lida en l√≠nea %d\n", current_line); }
     | error { yyerror("Error de sintaxis"); }
     ;
 
@@ -108,7 +108,7 @@ value_list: expr { $$ = $1; }
 %%
 
 void yyerror(const char *s) {
-    fprintf(stderr, "Error en lÌnea %d: %s\n", current_line, s);
+    fprintf(stderr, "Error en l√≠nea %d: %s\n", current_line, s);
 }
 
 int main() {
