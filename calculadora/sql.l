@@ -33,12 +33,12 @@ int current_line = 1;
 
 [a-zA-Z_][a-zA-Z0-9_]* {
     yylval.str = strdup(yytext);
-    return IDENTIFIER;
+    return ID;
 }
 
 [0-9]+ {
     yylval.str = strdup(yytext);
-    return NUMBER;
+    return NUM;
 }
 
 "'"([^']*)"'" {
@@ -46,8 +46,7 @@ int current_line = 1;
     return STRING;
 }
 
-\n              { current_line++; }
 
-[ \t]+          /* ignore whitespace */
+[ \n\t]+          /*  */
 .               { return yytext[0]; }
 %%
